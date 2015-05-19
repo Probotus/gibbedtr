@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Gibbed.CrystalDynamics.FileFormats;
+using Gibbed.IO;
 using NDesk.Options;
 
 namespace Gibbed.TombRaider.RebuildFileLists
@@ -164,7 +165,7 @@ namespace Gibbed.TombRaider.RebuildFileLists
                 outputPaths.Add(outputPath);
 
                 var big = new BigFileV1();
-                big.LittleEndian = littleEndian;
+                big.Endianness = littleEndian ? Endian.Little : Endian.Big;
                 big.FileAlignment = fileAlignment;
 
                 if (File.Exists(inputPath + ".bak") == true)

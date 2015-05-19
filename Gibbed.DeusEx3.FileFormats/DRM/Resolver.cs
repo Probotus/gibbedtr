@@ -38,18 +38,18 @@ namespace Gibbed.DeusEx3.FileFormats.DRM
         public List<uint> Unknown3s = new List<uint>();
         public List<Unknown4Resolver> Unknown4s = new List<Unknown4Resolver>();
 
-        public void Deserialize(Stream input, bool littleEndian)
+        public void Deserialize(Stream input, Endian endianness)
         {
             if (input.Length < 20)
             {
                 throw new FormatException("bad section header size?");
             }
 
-            var count0 = input.ReadValueU32(littleEndian);
-            var count1 = input.ReadValueU32(littleEndian);
-            var count2 = input.ReadValueU32(littleEndian);
-            var count3 = input.ReadValueU32(littleEndian);
-            var count4 = input.ReadValueU32(littleEndian);
+            var count0 = input.ReadValueU32(endianness);
+            var count1 = input.ReadValueU32(endianness);
+            var count2 = input.ReadValueU32(endianness);
+            var count3 = input.ReadValueU32(endianness);
+            var count4 = input.ReadValueU32(endianness);
 
             this.LocalDataResolvers.Clear();
             for (uint i = 0; i < count0; i++)
@@ -76,14 +76,16 @@ namespace Gibbed.DeusEx3.FileFormats.DRM
             }
 
             this.Unknown3s.Clear();
-            for (uint i = 0; i < count3; i++)
-            {
-                throw new NotSupportedException();
-                var a = input.ReadValueU32();
-                this.Unknown3s.Add(a);
-            }
+			if (count3 > 0) throw new NotSupportedException();
+			/*
+			for (uint i = 0; i < count3; i++)
+			{
+				var a = input.ReadValueU32();
+				this.Unknown3s.Add(a);
+			}
+			*/
 
-            this.Unknown4s.Clear();
+			this.Unknown4s.Clear();
             for (uint i = 0; i < count4; i++)
             {
                 var unknown = new Unknown4Resolver();

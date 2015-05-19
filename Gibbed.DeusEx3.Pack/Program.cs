@@ -109,9 +109,9 @@ namespace Gibbed.DeusEx3.Pack
                 var _endian = root.GetAttribute("endian", "");
                 switch (_endian.ToLowerInvariant())
                 {
-                    case "big": big.LittleEndian = false; break;
+                    case "big": big.Endianness = Endian.Big; break;
                     case "little":
-                    default: big.LittleEndian = true; break;
+                    default: big.Endianness = Endian.Little; break;
                 }
 
                 big.BasePath = root.GetAttribute("basepath", "") ?? "PC-W";

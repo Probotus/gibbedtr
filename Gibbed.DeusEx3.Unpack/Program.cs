@@ -137,7 +137,7 @@ namespace Gibbed.DeusEx3.Unpack
             {
                 xml.WriteStartDocument();
                 xml.WriteStartElement("files");
-                xml.WriteAttributeString("endian", big.LittleEndian == true ? "little" : "big");
+                xml.WriteAttributeString("endian", big.Endianness == Endian.Little ? "little" : "big");
                 xml.WriteAttributeString("basepath", big.BasePath);
                 xml.WriteAttributeString("alignment", big.FileAlignment.ToString("X8"));
 

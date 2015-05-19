@@ -30,7 +30,7 @@ namespace Gibbed.CrystalDynamics.FileFormats
 {
     public class BigFileV1
     {
-        public bool LittleEndian = true;
+        public Endian Endianness = Endian.Little;
         public uint FileAlignment = 0x7FF00000;
         public List<Big.Entry> Entries
             = new List<Big.Entry>();
@@ -46,7 +46,7 @@ namespace Gibbed.CrystalDynamics.FileFormats
 
         public void Serialize(Stream output)
         {
-            output.WriteValueS32(this.Entries.Count, this.LittleEndian);
+            output.WriteValueS32(this.Entries.Count, this.Endianness);
 
             var entries = this.Entries
                 .OrderBy(e => e.UncompressedSize)
@@ -54,26 +54,26 @@ namespace Gibbed.CrystalDynamics.FileFormats
 
             foreach (var entry in entries)
             {
-                output.WriteValueU32(entry.NameHash, this.LittleEndian);
+                output.WriteValueU32(entry.NameHash, this.Endianness);
             }
 
             foreach (var entry in entries)
             {
-                output.WriteValueU32(entry.UncompressedSize, this.LittleEndian);
-                output.WriteValueU32(entry.Offset, this.LittleEndian);
-                output.WriteValueU32(entry.Locale, this.LittleEndian);
-                output.WriteValueU32(entry.CompressedSize, this.LittleEndian);
+                output.WriteValueU32(entry.UncompressedSize, this.Endianness);
+                output.WriteValueU32(entry.Offset, this.Endianness);
+                output.WriteValueU32(entry.Locale, this.Endianness);
+                output.WriteValueU32(entry.CompressedSize, this.Endianness);
             }
         }
 
         public void Deserialize(Stream input)
         {
-            var count = input.ReadValueU32(this.LittleEndian);
+            var count = input.ReadValueU32(this.Endianness);
 
             var hashes = new uint[count];
             for (uint i = 0; i < count; i++)
             {
-                hashes[i] = input.ReadValueU32(this.LittleEndian);
+                hashes[i] = input.ReadValueU32(this.Endianness);
             }
 
             this.Entries.Clear();
@@ -81,10 +81,10 @@ namespace Gibbed.CrystalDynamics.FileFormats
             {
                 var entry = new Big.Entry();
                 entry.NameHash = hashes[i];
-                entry.UncompressedSize = input.ReadValueU32(this.LittleEndian);
-                entry.Offset = input.ReadValueU32(this.LittleEndian);
-                entry.Locale = input.ReadValueU32(this.LittleEndian);
-                entry.CompressedSize = input.ReadValueU32(this.LittleEndian);
+                entry.UncompressedSize = input.ReadValueU32(this.Endianness);
+                entry.Offset = input.ReadValueU32(this.Endianness);
+                entry.Locale = input.ReadValueU32(this.Endianness);
+                entry.CompressedSize = input.ReadValueU32(this.Endianness);
                 this.Entries.Add(entry);
             }
         }

@@ -178,7 +178,7 @@ namespace Gibbed.TombRaider.UnpackTiger
             }
 
             var big = new BigFileV3();
-            big.LittleEndian = littleEndian;
+			big.Endianness = littleEndian ? Endian.Little : Endian.Big;
             big.FileAlignment = manager.GetSetting<uint>("bigfile_alignment", 0x7FF00000);
 
             using (var input = File.OpenRead(inputPath))
@@ -201,7 +201,7 @@ namespace Gibbed.TombRaider.UnpackTiger
             {
                 xml.WriteStartDocument();
                 xml.WriteStartElement("files");
-                xml.WriteAttributeString("endian", big.LittleEndian == true ? "little" : "big");
+                xml.WriteAttributeString("endian", big.Endianness == Endian.Little ? "little" : "big");
                 xml.WriteAttributeString("alignment", big.FileAlignment.ToString("X8"));
 
                 Stream data = null;

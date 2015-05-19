@@ -97,7 +97,9 @@ namespace Gibbed.TombRaider.FileFormats
             if ((this.Unknown16 & 0x8000) != 0)
             {
                 throw new NotSupportedException();
+				/*
                 this.unknownFlag = true;
+				*/
             }
 
             this.Mipmaps.Clear();

@@ -47,12 +47,12 @@ namespace Gibbed.TombRaider.FileFormats
         {
             var basePosition = input.Position;
 
-            if (input.ReadValueU32(false) != Magic) // CDRM
+            if (input.ReadValueU32(Endian.Big) != Magic) // CDRM
             {
                 throw new FormatException();
             }
 
-            var version = input.ReadValueU32(true);
+            var version = input.ReadValueU32(Endian.Little);
 
             if (version != 0 &&
                 version != 2 && version.Swap() != 2)
@@ -60,34 +60,36 @@ namespace Gibbed.TombRaider.FileFormats
                 throw new FormatException();
             }
 
-            bool littleEndian;
+            Endian endianness;
             uint count;
             uint padding;
 
             if (version == 0)
             {
-                count = input.ReadValueU32(true);
+                count = input.ReadValueU32(Endian.Little);
                 
                 if (count > 0x7FFFFF)
                 {
                     count = count.Swap();
-                    littleEndian = false;
+                    endianness = Endian.Big;
                 }
                 else
                 {
-                    littleEndian = true;
+                    endianness = Endian.Little;
                 }
 
-                input.ReadValueU32(littleEndian);
+                input.ReadValueU32(endianness);
 
                 padding = (uint)(basePosition + 16 + (count * 8));
                 padding = padding.Align(16) - padding;
             }
             else
             {
-                littleEndian = version == 2;
-                count = input.ReadValueU32(littleEndian);
-                padding = input.ReadValueU32(littleEndian);
+				endianness = version == 2 ?
+					Endian.Little :
+					Endian.Big;
+                count = input.ReadValueU32(endianness);
+                padding = input.ReadValueU32(endianness);
             }
             
             var startOfData = basePosition + 16 + (count * 8) + padding;
@@ -98,10 +100,10 @@ namespace Gibbed.TombRaider.FileFormats
                 for (uint i = 0; i < count; i++)
                 {
                     var block = new Block();
-                    var flags = buffer.ReadValueU32(littleEndian);
+                    var flags = buffer.ReadValueU32(endianness);
                     block.UncompressedSize = (flags >> 8) & 0xFFFFFF;
                     block.Type = (byte)(flags & 0xFF);
-                    block.CompressedSize = buffer.ReadValueU32(littleEndian);
+                    block.CompressedSize = buffer.ReadValueU32(endianness);
                     blocks[i] = block;
                 }
             }

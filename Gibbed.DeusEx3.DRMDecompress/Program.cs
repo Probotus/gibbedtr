@@ -80,7 +80,7 @@ namespace Gibbed.DeusEx3.DRMDecompress
             Stream data;
             using (var input = File.OpenRead(inputPath))
             {
-                var isCompressed = input.ReadValueU32(false) == CDRMFile.Magic;
+                var isCompressed = input.ReadValueU32(Endian.Big) == CDRMFile.Magic;
                 input.Seek(-4, SeekOrigin.Current);
 
                 if (isCompressed == true)

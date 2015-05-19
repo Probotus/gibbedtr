@@ -188,7 +188,7 @@ namespace Gibbed.TombRaider.Unpack
             }
 
             var big = new BigFileV1();
-            big.LittleEndian = littleEndian;
+			big.Endianness = littleEndian ? Endian.Little : Endian.Big;
             big.FileAlignment = manager.GetSetting<uint>("bigfile_alignment", 0x7FF00000);
             var compressionType = manager.GetSetting<CompressionType>("compression_type", CompressionType.None);
 
@@ -220,7 +220,7 @@ namespace Gibbed.TombRaider.Unpack
             {
                 xml.WriteStartDocument();
                 xml.WriteStartElement("files");
-                xml.WriteAttributeString("endian", big.LittleEndian == true ? "little" : "big");
+                xml.WriteAttributeString("endian", big.Endianness == Endian.Little ? "little" : "big");
                 xml.WriteAttributeString("alignment", big.FileAlignment.ToString("X8"));
 
                 Stream data = null;

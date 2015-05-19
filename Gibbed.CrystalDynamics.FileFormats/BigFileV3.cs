@@ -31,7 +31,7 @@ namespace Gibbed.CrystalDynamics.FileFormats
 {
     public class BigFileV3
     {
-        public bool LittleEndian = true;
+        public Endian Endianness = Endian.Little;
         public uint FileAlignment = 0x7FF00000;
         public List<Big.EntryV2> Entries
             = new List<Big.EntryV2>();
@@ -51,35 +51,35 @@ namespace Gibbed.CrystalDynamics.FileFormats
 
         public void Serialize(Stream output)
         {
-            output.WriteValueU32(0x54414653, this.LittleEndian);
-            output.WriteValueU32(this.Unknown04, this.LittleEndian);
-            output.WriteValueU32(this.NumberOfFiles, this.LittleEndian);
-            output.WriteValueS32(this.Entries.Count, this.LittleEndian);
-            output.WriteValueU32(this.Unknown10, this.LittleEndian);
+            output.WriteValueU32(0x54414653, this.Endianness);
+            output.WriteValueU32(this.Unknown04, this.Endianness);
+            output.WriteValueU32(this.NumberOfFiles, this.Endianness);
+            output.WriteValueS32(this.Entries.Count, this.Endianness);
+            output.WriteValueU32(this.Unknown10, this.Endianness);
             output.WriteString(this.BasePath, 32, Encoding.ASCII);
 
             foreach (var e in this.Entries.OrderBy(e => e.NameHash))
             {
-                output.WriteValueU32(e.NameHash, this.LittleEndian);
-                output.WriteValueU32(e.Locale, this.LittleEndian);
-                output.WriteValueU32(e.Size, this.LittleEndian);
-                output.WriteValueU32(e.File | e.Offset, this.LittleEndian);
+                output.WriteValueU32(e.NameHash, this.Endianness);
+                output.WriteValueU32(e.Locale, this.Endianness);
+                output.WriteValueU32(e.Size, this.Endianness);
+                output.WriteValueU32(e.File | e.Offset, this.Endianness);
             }
         }
 
         public void Deserialize(Stream input)
         {
-            var magic = input.ReadValueU32(this.LittleEndian);
+            var magic = input.ReadValueU32(this.Endianness);
 
             if (magic != 0x54414653)
                 throw new NotSupportedException("Bad magic number");
 
-            this.Unknown04 = input.ReadValueU32(this.LittleEndian);
-            this.NumberOfFiles = input.ReadValueU32(this.LittleEndian);
+            this.Unknown04 = input.ReadValueU32(this.Endianness);
+            this.NumberOfFiles = input.ReadValueU32(this.Endianness);
 
-            var count = input.ReadValueU32(this.LittleEndian);
+            var count = input.ReadValueU32(this.Endianness);
 
-            this.Unknown10 = input.ReadValueU32(this.LittleEndian);
+            this.Unknown10 = input.ReadValueU32(this.Endianness);
 
             this.BasePath = input.ReadString(32, true, Encoding.ASCII);
 
@@ -87,10 +87,10 @@ namespace Gibbed.CrystalDynamics.FileFormats
             for (uint i = 0; i < count; i++)
             {
                 var entry = new Big.EntryV2();
-                entry.NameHash = input.ReadValueU32(this.LittleEndian);
-                entry.Locale = input.ReadValueU32(this.LittleEndian);
-                entry.Size = input.ReadValueU32(this.LittleEndian);
-                var offset = input.ReadValueU32(this.LittleEndian);
+                entry.NameHash = input.ReadValueU32(this.Endianness);
+                entry.Locale = input.ReadValueU32(this.Endianness);
+                entry.Size = input.ReadValueU32(this.Endianness);
+                var offset = input.ReadValueU32(this.Endianness);
                 entry.Offset = offset & 0xFFFFFF00;
                 entry.File = offset & 0xFF;
                 this.Entries.Add(entry);

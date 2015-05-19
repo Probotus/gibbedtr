@@ -31,7 +31,7 @@ namespace Gibbed.CrystalDynamics.FileFormats
 {
     public class BigFileV2
     {
-        public bool LittleEndian;
+		public Endian Endianness;
         public uint FileAlignment;
         public string BasePath;
         public List<Big.Entry> Entries
@@ -50,9 +50,9 @@ namespace Gibbed.CrystalDynamics.FileFormats
 
         public void Serialize(Stream output)
         {
-            output.WriteValueU32(this.FileAlignment, this.LittleEndian);
+            output.WriteValueU32(this.FileAlignment, this.Endianness);
             output.WriteString(this.BasePath, 64, Encoding.ASCII);
-            output.WriteValueS32(this.Entries.Count, this.LittleEndian);
+            output.WriteValueS32(this.Entries.Count, this.Endianness);
 
             var entries = this.Entries
                 .OrderBy(e => e.UncompressedSize)
@@ -60,21 +60,21 @@ namespace Gibbed.CrystalDynamics.FileFormats
 
             foreach (var entry in entries)
             {
-                output.WriteValueU32(entry.NameHash, this.LittleEndian);
+                output.WriteValueU32(entry.NameHash, this.Endianness);
             }
 
             foreach (var entry in entries)
             {
-                output.WriteValueU32(entry.UncompressedSize, this.LittleEndian);
-                output.WriteValueU32(entry.Offset, this.LittleEndian);
-                output.WriteValueU32(entry.Locale, this.LittleEndian);
-                output.WriteValueU32(entry.CompressedSize, this.LittleEndian);
+                output.WriteValueU32(entry.UncompressedSize, this.Endianness);
+                output.WriteValueU32(entry.Offset, this.Endianness);
+                output.WriteValueU32(entry.Locale, this.Endianness);
+                output.WriteValueU32(entry.CompressedSize, this.Endianness);
             }
         }
 
         public void Deserialize(Stream input)
         {
-            var fileAlignment = input.ReadValueU32(true);
+            var fileAlignment = input.ReadValueU32(Endian.Little);
             if (fileAlignment != 0x7FF00000 &&
                 fileAlignment != 0x0000F07F &&
                 fileAlignment != 0x62300000 &&
@@ -83,20 +83,22 @@ namespace Gibbed.CrystalDynamics.FileFormats
                 throw new FormatException("unexpected file alignment (should have been 0x7FF00000)");
             }
 
-            this.LittleEndian =
-                fileAlignment == 0x7FF00000 ||
-                fileAlignment == 0x62300000;
-            this.FileAlignment = this.LittleEndian == true ?
+			this.Endianness =
+				(fileAlignment == 0x7FF00000 || fileAlignment == 0x62300000) ?
+					Endian.Little :
+					Endian.Big;
+
+			this.FileAlignment = this.Endianness == Endian.Little ?
                 fileAlignment : fileAlignment.Swap();
 
             this.BasePath = input.ReadString(64, true, Encoding.ASCII);
 
-            var count = input.ReadValueU32(this.LittleEndian);
+            var count = input.ReadValueU32(this.Endianness);
 
             var hashes = new uint[count];
             for (uint i = 0; i < count; i++)
             {
-                hashes[i] = input.ReadValueU32(this.LittleEndian);
+                hashes[i] = input.ReadValueU32(this.Endianness);
             }
 
             this.Entries.Clear();
@@ -104,10 +106,10 @@ namespace Gibbed.CrystalDynamics.FileFormats
             {
                 var entry = new Big.Entry();
                 entry.NameHash = hashes[i];
-                entry.UncompressedSize = input.ReadValueU32(this.LittleEndian);
-                entry.Offset = input.ReadValueU32(this.LittleEndian);
-                entry.Locale = input.ReadValueU32(this.LittleEndian);
-                entry.CompressedSize = input.ReadValueU32(this.LittleEndian);
+                entry.UncompressedSize = input.ReadValueU32(this.Endianness);
+                entry.Offset = input.ReadValueU32(this.Endianness);
+                entry.Locale = input.ReadValueU32(this.Endianness);
+                entry.CompressedSize = input.ReadValueU32(this.Endianness);
                 this.Entries.Add(entry);
 
                 if (entry.CompressedSize != 0)
