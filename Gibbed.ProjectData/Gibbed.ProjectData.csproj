@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>Gibbed.ProjectData</AssemblyTitle>
-    <Product>Gibbed.ProjectData</Product>
-    <Description>Helper assembly for ease of loading project data.</Description>
-    <Copyright>Copyright © Gibbed 2011</Copyright>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+    <PropertyGroup>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>Gibbed.ProjectData</AssemblyTitle>
+        <Product>Gibbed.ProjectData</Product>
+        <Description>Helper assembly for ease of loading project data.</Description>
+        <Copyright>Copyright © Gibbed 2011</Copyright>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+    </ItemGroup>
 </Project>

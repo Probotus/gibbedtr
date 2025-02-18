@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>Gibbed.IO</AssemblyTitle>
-    <Product>Gibbed.IO</Product>
-    <Description>http://gib.me/</Description>
-    <Copyright>Copyright © Gibbed 2012</Copyright>
-    <Deterministic>false</Deterministic>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+    <PropertyGroup>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>Gibbed.IO</AssemblyTitle>
+        <Product>Gibbed.IO</Product>
+        <Description>http://gib.me/</Description>
+        <Copyright>Copyright © Gibbed 2012</Copyright>
+        <Deterministic>false</Deterministic>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+    </ItemGroup>
 </Project>

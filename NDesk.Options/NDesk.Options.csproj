@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>NDesk.Options</AssemblyTitle>
-    <Company>Novell</Company>
-    <Product>NDesk.Options</Product>
-    <Copyright>Copyright © Novell 2008</Copyright>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <DefineConstants>TRACE;DEBUG;LINQ NDESK_OPTIONS</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
-    <DefineConstants>TRACE;LINQ NDESK_OPTIONS</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-  </ItemGroup>
+    <PropertyGroup>
+        <Version>9.0.30729</Version>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>NDesk.Options</AssemblyTitle>
+        <Company>Novell</Company>
+        <Product>NDesk.Options</Product>
+        <Copyright>Copyright © Novell 2008</Copyright>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <DefineConstants>TRACE;DEBUG;LINQ NDESK_OPTIONS</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DebugType>none</DebugType>
+        <DefineConstants>TRACE;LINQ NDESK_OPTIONS</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System.Data.DataSetExtensions" />
+    </ItemGroup>
 </Project>

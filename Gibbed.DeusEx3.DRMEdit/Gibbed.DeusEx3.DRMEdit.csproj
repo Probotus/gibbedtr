@@ -1,26 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>Gibbed.DeusEx3.DRMEdit</AssemblyTitle>
-    <Product>Gibbed.DeusEx3.DRMEdit</Product>
-    <Copyright>Copyright © Gibbed 2011</Copyright>
-    <Deterministic>false</Deterministic>
-    <Platforms>AnyCPU;x64</Platforms>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Be.Windows.Forms.HexBox">
-      <HintPath>..\other\Be.Windows.Forms.HexBox.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Windows.Forms" />
+    <PropertyGroup>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+        <Product>Gibbed.DeusEx3</Product>
+        <Copyright>Copyright © Gibbed 2011</Copyright>
+        <Deterministic>false</Deterministic>
+        <Platforms>AnyCPU;x64</Platforms>
+        <DebugType>full</DebugType>
+        <UseWindowsForms>True</UseWindowsForms>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <AppendPlatformToOutputPath>False</AppendPlatformToOutputPath>
+        <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+        <DebugType>none</DebugType>
+        <OutputPath>..\bin_dx3\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Be.Windows.Forms.HexBox">
+            <HintPath>..\other\Be.Windows.Forms.HexBox.dll</HintPath>
+        </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Explorer.cs">
@@ -86,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gibbed.DeusEx3.FileFormats\Gibbed.DeusEx3.FileFormats.csproj" />
-    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
     <ProjectReference Include="..\Gibbed.Squish\Gibbed.Squish.csproj" />
     <ProjectReference Include="..\NDesk.Options\NDesk.Options.csproj" />
   </ItemGroup>
