@@ -1,22 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>Gibbed.TombRaider.FileFormats</AssemblyTitle>
-    <Product>Gibbed.TombRaider.FileFormats</Product>
-    <Copyright>Copyright © Gibbed 2011</Copyright>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\other\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
-  </ItemGroup>
+    <PropertyGroup>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+        <Product>Gibbed.TombRaider</Product>
+        <Copyright>Copyright © Gibbed 2011</Copyright>
+        <Platforms>AnyCPU;x64</Platforms>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <AppendPlatformToOutputPath>False</AppendPlatformToOutputPath>
+        <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+        <DebugType>none</DebugType>
+        <OutputPath>..\bin_tr\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="ICSharpCode.SharpZipLib">
+            <HintPath>..\other\ICSharpCode.SharpZipLib.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
+    </ItemGroup>
 </Project>

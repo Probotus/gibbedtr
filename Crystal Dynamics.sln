@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDesk.Options", "NDesk.Opti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.ProjectData", "Gibbed.ProjectData\Gibbed.ProjectData.csproj", "{F27A289E-3376-4653-89F3-D19C1ECABF33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C3E66CE0-1885-4DD5-A28C-D9DFF656A5AA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.DeusEx3.Unpack", "Gibbed.DeusEx3.Unpack\Gibbed.DeusEx3.Unpack.csproj", "{78A8A0BB-4B7C-43E6-B05E-A128180CF69A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.DeusEx3.Pack", "Gibbed.DeusEx3.Pack\Gibbed.DeusEx3.Pack.csproj", "{D83D305F-5127-48B5-8995-DFFBB2BE95B9}"
@@ -80,10 +78,6 @@ Global
 		{F27A289E-3376-4653-89F3-D19C1ECABF33}.Debug|x64.Build.0 = Debug|x64
 		{F27A289E-3376-4653-89F3-D19C1ECABF33}.Release|x64.ActiveCfg = Release|x64
 		{F27A289E-3376-4653-89F3-D19C1ECABF33}.Release|x64.Build.0 = Release|x64
-		{C3E66CE0-1885-4DD5-A28C-D9DFF656A5AA}.Debug|x64.ActiveCfg = Debug|x64
-		{C3E66CE0-1885-4DD5-A28C-D9DFF656A5AA}.Debug|x64.Build.0 = Debug|x64
-		{C3E66CE0-1885-4DD5-A28C-D9DFF656A5AA}.Release|x64.ActiveCfg = Release|x64
-		{C3E66CE0-1885-4DD5-A28C-D9DFF656A5AA}.Release|x64.Build.0 = Release|x64
 		{78A8A0BB-4B7C-43E6-B05E-A128180CF69A}.Debug|x64.ActiveCfg = Debug|x64
 		{78A8A0BB-4B7C-43E6-B05E-A128180CF69A}.Debug|x64.Build.0 = Debug|x64
 		{78A8A0BB-4B7C-43E6-B05E-A128180CF69A}.Release|x64.ActiveCfg = Release|x64

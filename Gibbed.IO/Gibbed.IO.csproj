@@ -7,7 +7,7 @@
         <Description>http://gib.me/</Description>
         <Copyright>Copyright © Gibbed 2012</Copyright>
         <Deterministic>false</Deterministic>
-        <Platforms>AnyCPU;x64;x86</Platforms>
+        <Platforms>AnyCPU;x64</Platforms>
         <DebugType>full</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'">

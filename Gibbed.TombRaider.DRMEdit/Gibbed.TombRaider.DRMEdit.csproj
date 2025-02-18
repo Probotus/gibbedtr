@@ -1,27 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
-    <AssemblyTitle>Gibbed.TombRaider.DRMEdit</AssemblyTitle>
-    <Product>Gibbed.TombRaider.DRMEdit</Product>
-    <Copyright>Copyright © Gibbed 2011</Copyright>
-    <Deterministic>false</Deterministic>
-    <Platforms>AnyCPU;x64</Platforms>
-    <DebugType>full</DebugType>
+    <PropertyGroup>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+        <Product>Gibbed.TombRaider</Product>
+        <Copyright>Copyright © Gibbed 2011</Copyright>
+        <Deterministic>false</Deterministic>
+        <Platforms>AnyCPU;x64</Platforms>
+        <DebugType>full</DebugType>
+        <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Be.Windows.Forms.HexBox">
-      <HintPath>..\other\Be.Windows.Forms.HexBox.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <AppendPlatformToOutputPath>False</AppendPlatformToOutputPath>
+        <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+        <DebugType>none</DebugType>
+        <OutputPath>..\bin_tr\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Be.Windows.Forms.HexBox">
+            <HintPath>..\other\Be.Windows.Forms.HexBox.dll</HintPath>
+        </Reference>
+    </ItemGroup>
   <ItemGroup>
     <Compile Update="Explorer.cs">
       <SubType>Form</SubType>
@@ -85,7 +85,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
     <ProjectReference Include="..\Gibbed.Squish\Gibbed.Squish.csproj" />
     <ProjectReference Include="..\Gibbed.TombRaider.FileFormats\Gibbed.TombRaider.FileFormats.csproj" />
     <ProjectReference Include="..\NDesk.Options\NDesk.Options.csproj" />
