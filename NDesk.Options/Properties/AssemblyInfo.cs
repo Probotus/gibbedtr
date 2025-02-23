@@ -12,10 +12,10 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Novell")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © Novell 2008")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("9.0.30729.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("9.0.30729+1ee129b814c933ccd7fd53eecfabec893e885e19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("9.0.30729+71a23c76312bc612d7d108d5e44203794dee9812")]
 [assembly: System.Reflection.AssemblyProductAttribute("NDesk.Options")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NDesk.Options")]
 [assembly: System.Reflection.AssemblyVersionAttribute("9.0.30729.0")]

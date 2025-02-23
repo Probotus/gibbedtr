@@ -10,11 +10,11 @@
         <DebugType>full</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <DefineConstants>TRACE;DEBUG;LINQ NDESK_OPTIONS</DefineConstants>
+        <DefineConstants>NDESK_OPTIONS</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
         <DebugType>none</DebugType>
-        <DefineConstants>TRACE;LINQ NDESK_OPTIONS</DefineConstants>
+        <DefineConstants>NDESK_OPTIONS</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System.Data.DataSetExtensions" />
