@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <ProductVersion>8.0.30703</ProductVersion>
         <TargetFramework>net48</TargetFramework>
         <AssemblyTitle>Gibbed.IO</AssemblyTitle>
         <Product>Gibbed.IO</Product>

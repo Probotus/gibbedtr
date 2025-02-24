@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Version>9.0.30729</Version>
         <TargetFramework>net48</TargetFramework>
         <AssemblyTitle>NDesk.Options</AssemblyTitle>
         <Company>Novell</Company>

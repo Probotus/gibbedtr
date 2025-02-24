@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <ProductVersion>9.0.21022</ProductVersion>
         <TargetFramework>net48</TargetFramework>
         <AssemblyTitle>Gibbed.Squish</AssemblyTitle>
         <Product>Gibbed.Squish</Product>
